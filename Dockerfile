@@ -1,19 +1,19 @@
 FROM python:3.10-slim
 
-# Установка зависимостей системы
+# Установка системных библиотек, включая libGL
 RUN apt-get update && \
     apt-get install -y ffmpeg libsm6 libxext6 libgl1-mesa-glx && \
     apt-get clean
 
-# Установка Python-зависимостей
+# Копируем зависимости
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Копирование исходного кода
+# Копируем проект
 COPY . .
 
-# Указание порта
+# Открываем нужный порт
 EXPOSE 7860
 
-# Запуск приложения
+# Запуск Python приложения
 CMD ["python", "app.py"]
