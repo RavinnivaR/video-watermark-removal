@@ -15,7 +15,17 @@ def remove():
         return jsonify({"error": "No video uploaded"}), 400
 
     # Чтение координат из формы
-    try:
-        x = int(request.form.get("x", 0))
-        y = int(request.form.get("y", 0))
-        w = int(request.form.get("w", 100))
+try:
+    x = int(request.form.get("x", 0))
+except Exception:
+    x = 0
+
+try:
+    y = int(request.form.get("y", 0))
+except Exception:
+    y = 0
+
+try:
+    w = int(request.form.get("w", 100))
+except Exception:
+    w = 100
